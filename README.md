@@ -16,7 +16,7 @@ let package = Package(
             targets: ["YourProject"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/BMilliet/SwiftAnimatedSprite", from: "1.0.2"),
+        .package(url: "https://github.com/BMilliet/SwiftAnimatedSprite", from: "1.0.3"),
     ],
     targets: [
         .target(
