@@ -4,7 +4,7 @@ public struct AnimatedSpriteImage: View {
 
     @ObservedObject private var viewModel = AnimatedSpriteImageModel()
 
-    init(imageName: String, columns: Int, frameRate: Float, repeate: Bool, width: CGFloat, height: CGFloat) {
+    init(imageName: String, columns: Int, frameRate: Float, loop: Bool, width: CGFloat, height: CGFloat) {
         // TODO: row is hard coded for now
         let imageArray = ImageCutter.cut(imageName: imageName, rows: 1, columns: columns)
 
@@ -13,7 +13,7 @@ public struct AnimatedSpriteImage: View {
             frameRate: frameRate,
             imageWidth: width,
             imageHeight: height,
-            repeateAnimation: repeate
+            loop: loop
         )
 
         viewModel.setup(data: imageData)

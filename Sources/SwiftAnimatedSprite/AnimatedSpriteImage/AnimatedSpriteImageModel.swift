@@ -10,7 +10,7 @@ final class AnimatedSpriteImageModel: ObservableObject {
     private var frameRate: Float = 0.0
     private var imageWidth: CGFloat = 0
     private var imageHeight: CGFloat = 0
-    private var shouldRepeate: Bool = false
+    private var loop: Bool = false
 
 
     func setup(data: AnimatedSpriteImageData) {
@@ -18,7 +18,7 @@ final class AnimatedSpriteImageModel: ObservableObject {
         self.frameRate     = data.frameRate
         self.imageWidth    = data.imageWidth
         self.imageHeight   = data.imageHeight
-        self.shouldRepeate = data.repeateAnimation
+        self.loop          = data.loop
         startTimer()
     }
 
@@ -60,7 +60,7 @@ final class AnimatedSpriteImageModel: ObservableObject {
         if currentImageCount >= imageArray.count {
             currentImageCount = 0
 
-            if !shouldRepeate {
+            if !loop {
                 stop()
             }
         }

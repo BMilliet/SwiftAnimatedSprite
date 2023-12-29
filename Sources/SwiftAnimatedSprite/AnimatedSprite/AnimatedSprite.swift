@@ -15,13 +15,13 @@ public final class AnimatedSprite: ObservableObject {
     }
 
 
-    public func add(imageName: String, columns: Int, frameRate: Float, repeate: Bool) {
+    public func add(imageName: String, columns: Int, frameRate: Float, loop: Bool) {
 
         let image = AnimatedSpriteImage(
             imageName: imageName,
             columns:   columns,
             frameRate: frameRate,
-            repeate:   repeate,
+            loop:      loop,
             width:     self.imageWidth,
             height:    self.imageHeight
         )
