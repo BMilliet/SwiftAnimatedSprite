@@ -4,13 +4,14 @@ final class AnimatedSpriteImageModel: ObservableObject {
 
     @Published var image: AnyView = AnyView(Rectangle())
 
-    private var timer: Timer?
     private var imageArray = [Image]()
     private var currentImageCount = 0
     private var frameRate: Float = 0.0
     private var imageWidth: CGFloat = 0
     private var imageHeight: CGFloat = 0
     private var loop: Bool = false
+    private var animationPlaying = false
+    private var timerCount = 0
 
 
     func setup(data: AnimatedSpriteImageData) {
@@ -23,31 +24,35 @@ final class AnimatedSpriteImageModel: ObservableObject {
     }
 
     func stop() {
-        timer?.invalidate()
-        timer = nil
+        animationPlaying = false
+        timerCount -= 1
     }
 
     func play() {
-        guard let _ = timer else { return }
         startTimer()
     }
 
 
     private func startTimer() {
-        self.timer = Timer.scheduledTimer(
+        if timerCount > 0 { return }
+        animationPlaying = true
+        timerCount += 1
+        _ = Timer.scheduledTimer(
             timeInterval: TimeInterval(frameRate),
             target: self,
             selector: #selector(update),
             userInfo: nil,
             repeats: true
         )
-
-        guard let _timer = timer else { return }
-        RunLoop.main.add(_timer, forMode: .common)
     }
 
 
-    @objc private func update() {
+    @objc private func update(timer: Timer) {
+        if !animationPlaying || timerCount > 1 {
+            timer.invalidate()
+            return
+        }
+
         image = AnyView(
             imageArray[currentImageCount]
                 .resizable()
