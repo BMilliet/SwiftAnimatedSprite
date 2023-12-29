@@ -5,4 +5,5 @@ struct AnimatedSpriteImageData {
     let frameRate: Float
     let imageWidth: CGFloat
     let imageHeight: CGFloat
+    let repeateAnimation: Bool
 }
