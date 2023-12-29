@@ -16,7 +16,7 @@ let package = Package(
             targets: ["YourProject"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/BMilliet/SwiftAnimatedSprite", from: "1.0.0"),
+        .package(url: "https://github.com/BMilliet/SwiftAnimatedSprite", from: "1.0.2"),
     ],
     targets: [
         .target(
@@ -42,10 +42,10 @@ struct ContentView: View {
     @ObservedObject private var animatedSprite = AnimatedSprite(width: 200, height: 200)
 
     init() {
-        animatedSprite.add(imageName: "walking_side", columns: 8, frameRate: 0.2)
-        animatedSprite.add(imageName: "walking_up", columns: 4, frameRate: 0.2)
-        animatedSprite.add(imageName: "walking_down", columns: 8, frameRate: 0.2)
-        animatedSprite.add(imageName: "idle", columns: 8, frameRate: 0.4)
+        animatedSprite.add(imageName: "walking_side", columns: 8, frameRate: 0.2, loop: false)
+        animatedSprite.add(imageName: "walking_up", columns: 4, frameRate: 0.2, loop: false)
+        animatedSprite.add(imageName: "walking_down", columns: 8, frameRate: 0.2, loop: false)
+        animatedSprite.add(imageName: "idle", columns: 8, frameRate: 0.4, loop: false)
     }
 
     var body: some View {
